@@ -1,0 +1,33 @@
+<head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<h1>Check all my tasks</h1>
+
+<div class="tasks">
+  <ul>
+    <% @tasks.each do |task| %>
+      <li class="task">
+        <div class="checkbox">
+        <%= task.completed ? "✅" : "⬜" %>
+        </div>
+
+        <div class="title">
+        <%= link_to task.title, task_path(task)%>
+        </div>
+
+        <div class="delete">
+          <%=link_to"🗑️",task_path(task),
+          method: :delete,
+          data: { confirm: "Are you sure?" } %>
+        </div>
+
+      </li>
+    <% end %>
+  </ul>
+</div>
+
+<div class="new-task">
+  <%= link_to "+ Add a new task", "tasks/new" %>
+</div>
